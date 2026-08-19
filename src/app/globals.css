@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f2ec;
+  --foreground: #2b2825;
+}
+
+@theme inline {
+  --color-cream: #f7f2ec;
+  --color-sand: #efe6dc;
+  --color-ink: #2b2825;
+  --color-muted: #6f675f;
+  --color-accent: #b07d6e;
+  --color-accent-hover: #9a685c;
+  --color-line: #e3d8ce;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+  --animate-fade-up: fade-up 0.7s ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.25rem;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, white);
+}
+
+.hero-photo {
+  object-fit: cover;
+  object-position: 50% 8%;
+  transform: scale(1.52);
+  transform-origin: 50% 16%;
+}
+
+@media (min-width: 1024px) {
+  .hero-photo {
+    object-position: 52% 6%;
+    transform: scale(1.36);
+    transform-origin: 50% 14%;
+  }
+}
