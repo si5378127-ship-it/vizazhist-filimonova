@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  // TODO: добавить metadataBase с реальным доменом сайта
+  metadataBase: new URL("https://vizazhist-filimonova.ru"),
 };
 
 export const viewport: Viewport = {
