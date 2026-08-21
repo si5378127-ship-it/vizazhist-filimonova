@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    yandex: "88d2291861ea2378",
+  },
   metadataBase: new URL("https://vizazhist-filimonova.ru"),
 };
 
