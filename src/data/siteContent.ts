@@ -405,7 +405,7 @@ export const additional = {
 };
 
 export const studio = {
-  id: "contacts",
+  id: "studio",
   title: "Где проходят сборы",
   addressLines: [
     "г. Тверь",

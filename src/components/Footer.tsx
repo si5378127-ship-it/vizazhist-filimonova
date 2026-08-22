@@ -68,7 +68,10 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line px-4 pb-24 pt-12 sm:px-6 lg:px-10 lg:pb-12">
+    <footer
+      id="contacts"
+      className="border-t border-line px-4 pb-24 pt-12 sm:px-6 lg:px-10 lg:pb-12"
+    >
       <div className="mx-auto flex max-w-[1400px] flex-col gap-10 sm:flex-row sm:justify-between sm:gap-16">
         <div className="min-w-0 max-w-full">
           <p className="font-serif text-xl text-ink">{site.name}</p>
