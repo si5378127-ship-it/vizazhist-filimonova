@@ -12,7 +12,10 @@ import { Services } from "@/components/Services";
 import { Socials } from "@/components/Socials";
 import { Studio } from "@/components/Studio";
 import { pageCanonical } from "@/lib/seo";
+import { services, site } from "@/data/siteContent";
 import type { Metadata, ResolvingMetadata } from "next";
+
+const homeDescription = `Визажист Елена Филимонова в Твери. Макияж для мероприятий, свадеб, съёмок и особых случаев. Стоимость макияжа — ${services.featured.price}. Онлайн-запись.`;
 
 export async function generateMetadata(
   _props: PageProps<"/">,
@@ -21,12 +24,21 @@ export async function generateMetadata(
   const parentOg = (await parent).openGraph;
 
   return {
+    title: site.title,
+    description: homeDescription,
     alternates: {
       canonical: pageCanonical.home,
     },
     openGraph: {
       ...parentOg,
+      title: site.title,
+      description: homeDescription,
       url: pageCanonical.home,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: site.title,
+      description: homeDescription,
     },
   };
 }
