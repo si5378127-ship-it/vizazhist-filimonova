@@ -11,6 +11,25 @@ import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { Socials } from "@/components/Socials";
 import { Studio } from "@/components/Studio";
+import { pageCanonical } from "@/lib/seo";
+import type { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  _props: PageProps<"/">,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const parentOg = (await parent).openGraph;
+
+  return {
+    alternates: {
+      canonical: pageCanonical.home,
+    },
+    openGraph: {
+      ...parentOg,
+      url: pageCanonical.home,
+    },
+  };
+}
 
 export default function Home() {
   return (
