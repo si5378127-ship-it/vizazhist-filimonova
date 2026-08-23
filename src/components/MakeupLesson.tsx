@@ -83,7 +83,13 @@ export function MakeupLesson() {
             ))}
           </div>
 
-          <CtaLink href={links.dikidi} outbound="dikidi" className="mt-8">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            className="mt-8"
+            goal="dikidi_click"
+            placement="makeup_lesson"
+          >
             {makeupLesson.cta}
           </CtaLink>
         </div>

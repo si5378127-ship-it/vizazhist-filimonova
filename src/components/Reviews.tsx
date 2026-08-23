@@ -43,10 +43,22 @@ export function Reviews() {
         </div>
 
         <div className="mt-10 flex flex-col items-start gap-3">
-          <CtaLink href={links.yandex} outbound="yandex" variant="secondary">
+          <CtaLink
+            href={links.yandex}
+            outbound="yandex"
+            variant="secondary"
+            goal="yandex_click"
+            placement="reviews"
+          >
             {reviews.yandexCta}
           </CtaLink>
-          <CtaLink href={links.dikidi} outbound="dikidi" variant="ghost">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            variant="ghost"
+            goal="dikidi_click"
+            placement="reviews"
+          >
             {reviews.dikidiNote}
           </CtaLink>
         </div>

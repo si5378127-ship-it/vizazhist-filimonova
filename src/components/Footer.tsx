@@ -1,5 +1,8 @@
+"use client";
+
 import { ExternalMark, outboundServices } from "@/components/CtaLink";
 import { footer, legal, links, operator, site } from "@/data/siteContent";
+import { metrikaGoals, reachMetrikaGoal, type MetrikaGoalId } from "@/lib/metrika";
 import { isExternalHref, linkAttrs } from "@/lib/utils";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -9,11 +12,15 @@ function TextLink({
   className,
   children,
   outbound,
+  goal,
+  placement,
 }: {
   href: string;
   className: string;
   children: ReactNode;
   outbound?: keyof typeof outboundServices;
+  goal?: MetrikaGoalId;
+  placement?: string;
 }) {
   const service = outbound ? outboundServices[outbound] : undefined;
   const content = (
@@ -32,7 +39,16 @@ function TextLink({
   }
 
   return (
-    <a href={href} className={className} {...linkAttrs(href)}>
+    <a
+      href={href}
+      className={className}
+      onClick={() => {
+        if (goal && placement) {
+          reachMetrikaGoal(goal, { placement });
+        }
+      }}
+      {...linkAttrs(href)}
+    >
       {content}
     </a>
   );
@@ -43,21 +59,29 @@ const footerContactLinks = [
     href: links.vkMessage,
     label: "Написать в VK",
     outbound: "vk" as const,
+    goal: metrikaGoals.vkMessage,
+    placement: "footer",
   },
   {
     href: links.telegram,
     label: "Написать в Telegram",
     outbound: "telegram" as const,
+    goal: metrikaGoals.telegram,
+    placement: "footer",
   },
   {
     href: links.max,
     label: "Написать в MAX",
     outbound: "max" as const,
+    goal: metrikaGoals.max,
+    placement: "footer",
   },
   {
     href: links.instagram,
     label: "Instagram",
     outbound: "instagram" as const,
+    goal: metrikaGoals.instagram,
+    placement: "footer",
   },
 ];
 
@@ -95,6 +119,8 @@ export function Footer() {
                 <TextLink
                   href={item.href}
                   outbound={item.outbound}
+                  goal={item.goal}
+                  placement={item.placement}
                   className="inline-flex min-h-11 items-center text-[15px] text-ink transition-colors hover:text-accent-hover"
                 >
                   {item.label}

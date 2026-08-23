@@ -28,7 +28,13 @@ export function MobileStickyCta() {
       )}
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
-      <CtaLink href={links.dikidi} outbound="dikidi" className="w-full">
+      <CtaLink
+        href={links.dikidi}
+        outbound="dikidi"
+        className="w-full"
+        goal="dikidi_click"
+        placement="mobile_sticky"
+      >
         {cta.book}
       </CtaLink>
     </div>

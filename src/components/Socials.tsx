@@ -16,10 +16,24 @@ export function Socials() {
           {socials.text}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <CtaLink href={links.instagram} outbound="instagram" variant="secondary" className="min-w-36">
+          <CtaLink
+            href={links.instagram}
+            outbound="instagram"
+            variant="secondary"
+            className="min-w-36"
+            goal="instagram_click"
+            placement="socials"
+          >
             {socials.instagramLabel}
           </CtaLink>
-          <CtaLink href={links.vkPortfolio} outbound="vk" variant="secondary" className="min-w-36">
+          <CtaLink
+            href={links.vkPortfolio}
+            outbound="vk"
+            variant="secondary"
+            className="min-w-36"
+            goal="vk_click"
+            placement="socials"
+          >
             {socials.vkLabel}
           </CtaLink>
         </div>

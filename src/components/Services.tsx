@@ -28,7 +28,13 @@ export function Services() {
           <p className="mt-4 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
             {services.featured.note}
           </p>
-          <CtaLink href={links.dikidi} outbound="dikidi" className="mt-7">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            className="mt-7"
+            goal="dikidi_click"
+            placement="services_primary"
+          >
             {services.featured.cta}
           </CtaLink>
         </article>
@@ -95,7 +101,14 @@ export function Services() {
         </div>
 
         <div className="mt-12">
-          <CtaLink href={links.dikidi} outbound="dikidi">{services.afterCta}</CtaLink>
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            goal="dikidi_click"
+            placement="services_secondary"
+          >
+            {services.afterCta}
+          </CtaLink>
         </div>
       </FadeIn>
     </section>

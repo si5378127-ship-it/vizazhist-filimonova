@@ -76,7 +76,14 @@ export function Header({ stuckInitially = false }: HeaderProps) {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
-          <CtaLink href={links.dikidi} outbound="dikidi" variant="nav" className="px-3.5 sm:px-5">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            variant="nav"
+            className="px-3.5 sm:px-5"
+            goal="dikidi_click"
+            placement="header"
+          >
             {cta.book}
           </CtaLink>
 

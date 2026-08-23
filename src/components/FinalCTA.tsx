@@ -42,7 +42,13 @@ export function FinalCTA() {
         </div>
 
         <div className="order-3 flex flex-col items-start px-6 pb-10 sm:px-10 lg:col-start-2 lg:row-start-2 lg:px-14 lg:pt-8 lg:pb-12">
-          <CtaLink href={links.dikidi} outbound="dikidi" className="mt-2 min-h-14 px-8 text-lg lg:mt-0">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            className="mt-2 min-h-14 px-8 text-lg lg:mt-0"
+            goal="dikidi_click"
+            placement="final_cta"
+          >
             {finalCta.cta}
           </CtaLink>
           <CtaLink href={links.contact} variant="ghost" className="mt-4">

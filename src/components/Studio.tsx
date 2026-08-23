@@ -39,7 +39,14 @@ export function Studio() {
           ))}
         </address>
 
-        <CtaLink href={links.yandex} outbound="yandex" variant="secondary" className="mt-7">
+        <CtaLink
+          href={links.yandex}
+          outbound="yandex"
+          variant="secondary"
+          className="mt-7"
+          goal="yandex_click"
+          placement="studio"
+        >
           {studio.mapCta}
         </CtaLink>
 

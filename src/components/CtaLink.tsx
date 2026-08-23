@@ -1,3 +1,6 @@
+"use client";
+
+import { reachMetrikaGoal, type MetrikaGoalId } from "@/lib/metrika";
 import { cn, linkAttrs } from "@/lib/utils";
 import type { ReactNode } from "react";
 
@@ -19,6 +22,8 @@ type CtaLinkProps = {
   className?: string;
   onClick?: () => void;
   outbound?: OutboundService;
+  goal?: MetrikaGoalId;
+  placement?: string;
 };
 
 const variants: Record<NonNullable<CtaLinkProps["variant"]>, string> = {
@@ -57,6 +62,8 @@ export function CtaLink({
   className,
   onClick,
   outbound,
+  goal,
+  placement,
 }: CtaLinkProps) {
   const service = outbound ? outboundServices[outbound] : undefined;
   const showMark =
@@ -70,7 +77,12 @@ export function CtaLink({
     <a
       href={href}
       className={cn(variants[variant], className)}
-      onClick={onClick}
+      onClick={() => {
+        if (goal && placement) {
+          reachMetrikaGoal(goal, { placement });
+        }
+        onClick?.();
+      }}
       aria-label={label}
       {...linkAttrs(href)}
     >

@@ -22,7 +22,9 @@ export function Hero() {
           {hero.priceLabel}
         </p>
         <div className="mt-7 flex flex-col items-start gap-3">
-          <CtaLink href={links.dikidi} outbound="dikidi">{hero.primaryCta}</CtaLink>
+          <CtaLink href={links.dikidi} outbound="dikidi" goal="dikidi_click" placement="hero">
+            {hero.primaryCta}
+          </CtaLink>
           <p className="text-sm text-muted">{hero.primaryNote}</p>
           <a
             href={hero.secondaryHref}
