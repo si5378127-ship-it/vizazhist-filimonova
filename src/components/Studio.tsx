@@ -1,9 +1,11 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { links, studio } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function Studio() {
+export async function Studio() {
+  const { studio, links } = await getResolvedSiteContent();
+
   return (
     <section
       id={studio.id}
@@ -17,7 +19,7 @@ export function Studio() {
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1.22fr)_minmax(0,1fr)] sm:items-start">
           {studio.images.map((image, index) => (
             <MediaFigure
-              key={image.src}
+              key={`${image.src}-${index}`}
               image={image}
               sizes={
                 index === 0
@@ -33,7 +35,10 @@ export function Studio() {
 
         <address className="mt-8 not-italic">
           {studio.addressLines.map((line) => (
-            <p key={line} className="text-base leading-relaxed text-ink sm:text-lg">
+            <p
+              key={line}
+              className="text-base leading-relaxed text-ink sm:text-lg"
+            >
               {line}
             </p>
           ))}
@@ -49,11 +54,6 @@ export function Studio() {
         >
           {studio.mapCta}
         </CtaLink>
-
-        {/*
-          TODO: при необходимости вставить Яндекс.Карту по ссылке из links.yandex.
-          По умолчанию интерактивная карта не загружается, чтобы не ухудшать Core Web Vitals.
-        */}
       </FadeIn>
     </section>
   );

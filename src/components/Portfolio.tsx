@@ -2,14 +2,16 @@
 
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { portfolio } from "@/data/siteContent";
+import { useSiteContent } from "@/components/SiteContentProvider";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export function Portfolio() {
+  const { portfolio } = useSiteContent();
   const [active, setActive] = useState<number | null>(null);
   const current = active !== null ? portfolio.images[active] : null;
+  const imageCount = portfolio.images.length;
 
   useEffect(() => {
     if (active === null) return;
@@ -18,14 +20,12 @@ export function Portfolio() {
       if (event.key === "Escape") setActive(null);
       if (event.key === "ArrowRight") {
         setActive((value) =>
-          value === null ? 0 : (value + 1) % portfolio.images.length,
+          value === null ? 0 : (value + 1) % imageCount,
         );
       }
       if (event.key === "ArrowLeft") {
         setActive((value) =>
-          value === null
-            ? 0
-            : (value - 1 + portfolio.images.length) % portfolio.images.length,
+          value === null ? 0 : (value - 1 + imageCount) % imageCount,
         );
       }
     };
@@ -36,10 +36,13 @@ export function Portfolio() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [active]);
+  }, [active, imageCount]);
 
   return (
-    <section id={portfolio.id} className="px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+    <section
+      id={portfolio.id}
+      className="px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24"
+    >
       <FadeIn className="mx-auto max-w-[1400px]">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl lg:text-[2.75rem]">
           {portfolio.title}
@@ -51,7 +54,7 @@ export function Portfolio() {
         <div className="mt-10 columns-1 gap-3 min-[480px]:columns-2 min-[480px]:gap-4 lg:columns-3">
           {portfolio.images.map((image, index) => (
             <button
-              key={image.src}
+              key={`${image.src}-${index}`}
               type="button"
               onClick={() => setActive(index)}
               className={cn(
@@ -111,9 +114,7 @@ export function Portfolio() {
                 className="min-h-11 rounded-md px-4 text-cream"
                 onClick={() =>
                   setActive(
-                    (value) =>
-                      ((value ?? 0) - 1 + portfolio.images.length) %
-                      portfolio.images.length,
+                    (value) => ((value ?? 0) - 1 + imageCount) % imageCount,
                   )
                 }
               >
@@ -123,9 +124,7 @@ export function Portfolio() {
                 type="button"
                 className="min-h-11 rounded-md px-4 text-cream"
                 onClick={() =>
-                  setActive(
-                    (value) => ((value ?? 0) + 1) % portfolio.images.length,
-                  )
+                  setActive((value) => ((value ?? 0) + 1) % imageCount)
                 }
               >
                 Дальше →

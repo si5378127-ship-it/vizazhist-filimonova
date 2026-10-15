@@ -12,16 +12,16 @@ import { Services } from "@/components/Services";
 import { Socials } from "@/components/Socials";
 import { Studio } from "@/components/Studio";
 import { pageCanonical } from "@/lib/seo";
-import { services, site } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 import type { Metadata, ResolvingMetadata } from "next";
-
-const homeDescription = `Визажист Елена Филимонова в Твери. Макияж для мероприятий, свадеб, съёмок и особых случаев. Стоимость макияжа — ${services.featured.price}. Онлайн-запись.`;
 
 export async function generateMetadata(
   _props: PageProps<"/">,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const { site, services } = await getResolvedSiteContent();
   const parentOg = (await parent).openGraph;
+  const homeDescription = `Визажист Елена Филимонова в Твери. Макияж для мероприятий, свадеб, съёмок и особых случаев. Стоимость макияжа — ${services.featured.price}. Онлайн-запись.`;
 
   return {
     title: site.title,

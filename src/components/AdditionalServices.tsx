@@ -1,8 +1,10 @@
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { additional } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function AdditionalServices() {
+export async function AdditionalServices() {
+  const { additional } = await getResolvedSiteContent();
+
   return (
     <section
       id={additional.id}
@@ -10,9 +12,9 @@ export function AdditionalServices() {
     >
       <FadeIn className="mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-12">
         <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2">
-          {additional.images.map((image) => (
+          {additional.images.map((image, index) => (
             <MediaFigure
-              key={image.src}
+              key={`${image.src}-${index}`}
               image={image}
               sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, 22vw"
               objectPosition={image.objectPosition}

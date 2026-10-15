@@ -1,9 +1,10 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { finalCta, links } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function FinalCTA() {
+export async function FinalCTA() {
+  const { finalCta, links } = await getResolvedSiteContent();
   const [mainPhoto, closeupPhoto] = finalCta.images;
 
   return (

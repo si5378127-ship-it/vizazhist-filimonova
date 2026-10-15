@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# sanity
+.sanity/
+
 # production
 /build
 
@@ -40,6 +43,7 @@ yarn-error.log*
 .env
 .env.local
 .env.*
+!.env.example
 
 # vercel
 .vercel
@@ -54,3 +58,5 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+# local Sanity Studio build output
+/dist/

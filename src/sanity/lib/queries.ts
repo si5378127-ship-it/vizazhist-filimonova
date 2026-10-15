@@ -1,0 +1,122 @@
+/** GROQ: единственный документ контента лендинга. */
+export const landingContentQuery = `*[_type == "landingContent"][0]{
+  heroH1,
+  heroSubtitle,
+  heroExtra,
+  heroPriceLabel,
+  heroPrimaryCta,
+  heroPrimaryNote,
+  heroSecondaryCta,
+  heroImage{
+    alt,
+    objectPosition,
+    size,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  portfolioTitle,
+  portfolioIntro,
+  portfolioImages[]{
+    alt,
+    objectPosition,
+    size,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  servicesTitle,
+  featuredServiceName,
+  featuredServicePrice,
+  featuredServiceNote,
+  featuredServiceCta,
+  secondaryServices[]{ name, price, note, notes },
+  compactServices[]{ name, price, note, notes },
+  browsTitle,
+  browsItems[]{ name, price },
+  extraServiceName,
+  extraServicePrice,
+  servicesAfterCta,
+  aboutTitle,
+  aboutParagraphs,
+  aboutImages[]{
+    alt,
+    objectPosition,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  reviewsTitle,
+  reviewsItems[]{ name, rating, text, source },
+  reviewsYandexCta,
+  reviewsDikidiNote,
+  lessonTitle,
+  lessonSubtitle,
+  lessonPrice,
+  lessonDuration,
+  lessonIncludesTitle,
+  lessonIncludes,
+  lessonHighlights,
+  lessonCta,
+  lessonImages[]{
+    alt,
+    objectPosition,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  additionalTitle,
+  additionalText,
+  additionalPriceLine,
+  additionalImages[]{
+    alt,
+    objectPosition,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  studioTitle,
+  studioAddressLines,
+  studioMapCta,
+  studioImages[]{
+    alt,
+    objectPosition,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata{ dimensions{ width, height } }
+      }
+    }
+  },
+  footerAddress,
+  footerEmail,
+  footerContactTitle,
+  linkDikidi,
+  linkYandex,
+  linkVkPortfolio,
+  linkVkMessage,
+  linkInstagram,
+  linkTelegram,
+  linkMax
+}`;

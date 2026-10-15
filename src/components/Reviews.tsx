@@ -1,6 +1,6 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
-import { links, reviews } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -13,7 +13,9 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export function Reviews() {
+export async function Reviews() {
+  const { reviews, links } = await getResolvedSiteContent();
+
   return (
     <section
       id={reviews.id}

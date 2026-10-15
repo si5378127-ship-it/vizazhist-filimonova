@@ -1,8 +1,10 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
-import { links, services } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function Services() {
+export async function Services() {
+  const { services, links } = await getResolvedSiteContent();
+
   return (
     <section
       id={services.id}
