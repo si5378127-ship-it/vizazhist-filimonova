@@ -1,7 +1,8 @@
 "use client";
 
 import { ExternalMark, outboundServices } from "@/components/CtaLink";
-import { footer, legal, links, operator, site } from "@/data/siteContent";
+import { useSiteContent } from "@/components/SiteContentProvider";
+import { legal, operator } from "@/data/siteContent";
 import { metrikaGoals, reachMetrikaGoal, type MetrikaGoalId } from "@/lib/metrika";
 import { isExternalHref, linkAttrs } from "@/lib/utils";
 import Link from "next/link";
@@ -54,42 +55,43 @@ function TextLink({
   );
 }
 
-const footerContactLinks = [
-  {
-    href: links.vkMessage,
-    label: "Написать в VK",
-    outbound: "vk" as const,
-    goal: metrikaGoals.vkMessage,
-    placement: "footer",
-  },
-  {
-    href: links.telegram,
-    label: "Написать в Telegram",
-    outbound: "telegram" as const,
-    goal: metrikaGoals.telegram,
-    placement: "footer",
-  },
-  {
-    href: links.max,
-    label: "Написать в MAX",
-    outbound: "max" as const,
-    goal: metrikaGoals.max,
-    placement: "footer",
-  },
-  {
-    href: links.instagram,
-    label: "Instagram",
-    outbound: "instagram" as const,
-    goal: metrikaGoals.instagram,
-    placement: "footer",
-  },
-];
-
 const legalLinkClassName =
   "underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 export function Footer() {
+  const { site, footer, links } = useSiteContent();
   const year = new Date().getFullYear();
+
+  const footerContactLinks = [
+    {
+      href: links.vkMessage,
+      label: "Написать в VK",
+      outbound: "vk" as const,
+      goal: metrikaGoals.vkMessage,
+      placement: "footer",
+    },
+    {
+      href: links.telegram,
+      label: "Написать в Telegram",
+      outbound: "telegram" as const,
+      goal: metrikaGoals.telegram,
+      placement: "footer",
+    },
+    {
+      href: links.max,
+      label: "Написать в MAX",
+      outbound: "max" as const,
+      goal: metrikaGoals.max,
+      placement: "footer",
+    },
+    {
+      href: links.instagram,
+      label: "Instagram",
+      outbound: "instagram" as const,
+      goal: metrikaGoals.instagram,
+      placement: "footer",
+    },
+  ];
 
   return (
     <footer

@@ -1,7 +1,7 @@
 "use client";
 
 import { CtaLink } from "@/components/CtaLink";
-import { cta, links, nav, site } from "@/data/siteContent";
+import { useSiteContent } from "@/components/SiteContentProvider";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ type HeaderProps = {
 };
 
 export function Header({ stuckInitially = false }: HeaderProps) {
+  const { site, nav, links, cta } = useSiteContent();
   const [stuck, setStuck] = useState(stuckInitially);
   const [open, setOpen] = useState(false);
 

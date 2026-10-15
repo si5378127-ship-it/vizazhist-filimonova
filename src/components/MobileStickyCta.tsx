@@ -1,11 +1,12 @@
 "use client";
 
 import { CtaLink } from "@/components/CtaLink";
-import { cta, links } from "@/data/siteContent";
+import { useSiteContent } from "@/components/SiteContentProvider";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export function MobileStickyCta() {
+  const { links, cta } = useSiteContent();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

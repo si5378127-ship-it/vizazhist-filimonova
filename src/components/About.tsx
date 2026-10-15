@@ -1,8 +1,10 @@
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { about } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function About() {
+export async function About() {
+  const { about } = await getResolvedSiteContent();
+
   return (
     <section
       id={about.id}
@@ -12,7 +14,7 @@ export function About() {
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {about.images.map((image, index) => (
             <MediaFigure
-              key={image.src}
+              key={`${image.src}-${index}`}
               image={image}
               sizes="(max-width: 1023px) 45vw, 28vw"
               objectPosition={image.objectPosition}

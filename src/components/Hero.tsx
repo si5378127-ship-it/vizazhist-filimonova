@@ -1,8 +1,10 @@
 import { CtaLink } from "@/components/CtaLink";
 import { MediaFigure } from "@/components/MediaFigure";
-import { hero, links } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function Hero() {
+export async function Hero() {
+  const { hero, links } = await getResolvedSiteContent();
+
   return (
     <section
       id="hero"
@@ -22,7 +24,12 @@ export function Hero() {
           {hero.priceLabel}
         </p>
         <div className="mt-7 flex flex-col items-start gap-3">
-          <CtaLink href={links.dikidi} outbound="dikidi" goal="dikidi_click" placement="hero">
+          <CtaLink
+            href={links.dikidi}
+            outbound="dikidi"
+            goal="dikidi_click"
+            placement="hero"
+          >
             {hero.primaryCta}
           </CtaLink>
           <p className="text-sm text-muted">{hero.primaryNote}</p>

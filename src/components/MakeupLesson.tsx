@@ -1,9 +1,10 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
 import { MediaFigure } from "@/components/MediaFigure";
-import { links, makeupLesson } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function MakeupLesson() {
+export async function MakeupLesson() {
+  const { makeupLesson, links } = await getResolvedSiteContent();
   const [featured, closeup, brushes] = makeupLesson.images;
 
   return (

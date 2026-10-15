@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
-import { site, studio } from "@/data/siteContent";
+import { SiteContentProvider } from "@/components/SiteContentProvider";
+import { site as fallbackSite } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -18,10 +20,10 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: site.title,
-  description: site.description,
-  applicationName: site.name,
-  authors: [{ name: site.name }],
+  title: fallbackSite.title,
+  description: fallbackSite.description,
+  applicationName: fallbackSite.name,
+  authors: [{ name: fallbackSite.name }],
   keywords: [
     "визажист Тверь",
     "макияж Тверь",
@@ -30,16 +32,16 @@ export const metadata: Metadata = {
     "урок макияжа",
   ],
   openGraph: {
-    title: site.title,
-    description: site.description,
+    title: fallbackSite.title,
+    description: fallbackSite.description,
     locale: "ru_RU",
     type: "website",
-    siteName: `${site.name} — визажист`,
+    siteName: `${fallbackSite.name} — визажист`,
   },
   twitter: {
     card: "summary_large_image",
-    title: site.title,
-    description: site.description,
+    title: fallbackSite.title,
+    description: fallbackSite.description,
   },
   robots: {
     index: true,
@@ -57,21 +59,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BeautySalon",
-  name: `${site.name} — визажист`,
-  description: site.description,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: site.city,
-    streetAddress: studio.addressLines[1],
-    addressCountry: "RU",
-  },
-  areaServed: site.city,
-};
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const content = await getResolvedSiteContent();
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    name: `${content.site.name} — визажист`,
+    description: content.site.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: content.site.city,
+      streetAddress: content.studio.addressLines[1],
+      addressCountry: "RU",
+    },
+    areaServed: content.site.city,
+  };
+
   return (
     <html
       lang="ru"
@@ -82,8 +86,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
-        <CookieConsent />
+        <SiteContentProvider value={content}>
+          {children}
+          <CookieConsent />
+        </SiteContentProvider>
       </body>
     </html>
   );

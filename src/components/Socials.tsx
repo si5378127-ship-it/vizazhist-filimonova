@@ -1,13 +1,12 @@
 import { CtaLink } from "@/components/CtaLink";
 import { FadeIn } from "@/components/FadeIn";
-import { links, socials } from "@/data/siteContent";
+import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
-export function Socials() {
+export async function Socials() {
+  const { socials, links } = await getResolvedSiteContent();
+
   return (
-    <section
-      id={socials.id}
-      className="px-4 py-16 sm:px-6 sm:py-20 lg:px-10"
-    >
+    <section id={socials.id} className="px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
       <FadeIn className="mx-auto max-w-3xl text-center">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl">
           {socials.title}

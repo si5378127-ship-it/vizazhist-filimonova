@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Sanity webhook → GitHub repository_dispatch → пересборка Pages.
+  # Срабатывает только после: (1) этого workflow на default branch (main),
+  # (2) webhook в Sanity Manage с PAT в заголовке Authorization.
+  # Токен хранится в Sanity, не в репозитории и не в GitHub Secrets.
+  repository_dispatch:
+    types: [sanity-content-published]
 
 permissions:
   contents: read
@@ -32,6 +38,12 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          # Публичные ID Sanity (не секреты). Задайте в GitHub → Settings → Variables
+          # или оставьте значения по умолчанию из src/sanity/env.ts.
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
         run: npm run build
 
       - name: Upload Pages artifact
