@@ -11,6 +11,7 @@ export const landingContent = defineType({
   groups: [
     { name: "hero", title: "Первый экран" },
     { name: "portfolio", title: "Портфолио" },
+    { name: "quiz", title: "Квиз" },
     { name: "services", title: "Услуги и цены" },
     { name: "about", title: "Обо мне" },
     { name: "reviews", title: "Отзывы" },
@@ -83,6 +84,13 @@ export const landingContent = defineType({
       title: "Главное фото",
       type: "siteImage",
       group: "hero",
+    }),
+    defineField({
+      name: "quizHeroCta",
+      title: "Кнопка квиза на первом экране",
+      type: "string",
+      group: "hero",
+      description: "Вторичная кнопка под записью. Например: Подобрать свой образ",
     }),
 
     // ——— Портфолио ———
@@ -379,6 +387,51 @@ export const landingContent = defineType({
       type: "string",
       group: "contacts",
     }),
+    // ——— Квиз ———
+    defineField({
+      name: "quizEnabled",
+      title: "Показывать квиз на сайте",
+      type: "boolean",
+      group: "quiz",
+      initialValue: true,
+      description:
+        "Если выключено — кнопки квиза скрыты, даже когда URL заполнен.",
+    }),
+    defineField({
+      name: "quizUrl",
+      title: "Ссылка на квиз",
+      type: "url",
+      group: "quiz",
+      description:
+        "Единый адрес квиза. При переносе на свой поддомен меняйте только это поле.",
+    }),
+    defineField({
+      name: "quizTitle",
+      title: "Заголовок блока после портфолио",
+      type: "string",
+      group: "quiz",
+    }),
+    defineField({
+      name: "quizDescription",
+      title: "Описание блока после портфолио",
+      type: "text",
+      rows: 3,
+      group: "quiz",
+    }),
+    defineField({
+      name: "quizCta",
+      title: "Текст кнопки после портфолио",
+      type: "string",
+      group: "quiz",
+    }),
+    defineField({
+      name: "quizEyebrow",
+      title: "Метка над заголовком",
+      type: "string",
+      group: "quiz",
+      description: "Например: Мини-тест · 1 минута",
+    }),
+
     defineField({
       name: "linkDikidi",
       title: "Ссылка Dikidi",

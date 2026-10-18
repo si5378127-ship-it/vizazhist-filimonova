@@ -7,6 +7,7 @@ import { Hero } from "@/components/Hero";
 import { MakeupLesson } from "@/components/MakeupLesson";
 import { MobileStickyCta } from "@/components/MobileStickyCta";
 import { Portfolio } from "@/components/Portfolio";
+import { QuizTeaser } from "@/components/QuizTeaser";
 import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { Socials } from "@/components/Socials";
@@ -56,6 +57,7 @@ export default function Home() {
       <main id="main" className="flex-1">
         <Hero />
         <Portfolio />
+        <QuizTeaser />
         <Services />
         <About />
         <Reviews />

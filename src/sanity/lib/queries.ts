@@ -118,5 +118,12 @@ export const landingContentQuery = `*[_type == "landingContent"][0]{
   linkVkMessage,
   linkInstagram,
   linkTelegram,
-  linkMax
+  linkMax,
+  quizEnabled,
+  quizUrl,
+  quizHeroCta,
+  quizTitle,
+  quizDescription,
+  quizCta,
+  quizEyebrow
 }`;

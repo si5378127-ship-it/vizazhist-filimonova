@@ -10,6 +10,7 @@ import {
   makeupLesson as fallbackLesson,
   nav,
   portfolio as fallbackPortfolio,
+  quiz as fallbackQuiz,
   reviews as fallbackReviews,
   services as fallbackServices,
   site,
@@ -94,7 +95,50 @@ export type ResolvedSiteContent = {
   };
   socials: typeof fallbackSocials;
   finalCta: typeof fallbackFinalCta;
+  quiz: {
+    enabled: boolean;
+    url: string;
+    heroCta: string;
+    eyebrow: string;
+    title: string;
+    description: string;
+    cta: string;
+  };
 };
+
+/** Показывать квиз только при валидном http(s) URL. */
+export function isValidQuizUrl(value: string | null | undefined): boolean {
+  const trimmed = value?.trim();
+  if (!trimmed) return false;
+  try {
+    const url = new URL(trimmed);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function resolveQuiz(
+  doc: SanityLandingContent | null | undefined,
+): ResolvedSiteContent["quiz"] {
+  const urlCandidate = pickString(doc?.quizUrl, fallbackQuiz.url);
+  const urlValid = isValidQuizUrl(urlCandidate);
+  const enabledFlag = doc?.quizEnabled;
+  const enabled =
+    (enabledFlag === undefined || enabledFlag === null
+      ? fallbackQuiz.enabled
+      : Boolean(enabledFlag)) && urlValid;
+
+  return {
+    enabled,
+    url: urlValid ? urlCandidate.trim() : fallbackQuiz.url,
+    heroCta: pickString(doc?.quizHeroCta, fallbackQuiz.heroCta),
+    eyebrow: pickString(doc?.quizEyebrow, fallbackQuiz.eyebrow),
+    title: pickString(doc?.quizTitle, fallbackQuiz.title),
+    description: pickString(doc?.quizDescription, fallbackQuiz.description),
+    cta: pickString(doc?.quizCta, fallbackQuiz.cta),
+  };
+}
 
 function pickString(
   value: string | null | undefined,
@@ -231,6 +275,7 @@ export function mapLandingContentToSite(
       studio: fallbackStudio,
       socials: fallbackSocials,
       finalCta: fallbackFinalCta,
+      quiz: resolveQuiz(null),
     };
   }
 
@@ -249,6 +294,8 @@ export function mapLandingContentToSite(
     fallbackFooter.email,
   );
 
+  const quiz = resolveQuiz(doc);
+
   const links = {
     ...fallbackLinks,
     dikidi,
@@ -259,6 +306,7 @@ export function mapLandingContentToSite(
     instagram,
     telegram,
     max,
+    quiz: quiz.url,
     email: `mailto:${emailAddress}`,
     contact: `mailto:${emailAddress}`,
   };
@@ -492,5 +540,6 @@ export function mapLandingContentToSite(
     },
     socials: fallbackSocials,
     finalCta: fallbackFinalCta,
+    quiz,
   };
 }

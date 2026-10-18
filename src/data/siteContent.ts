@@ -59,6 +59,12 @@ export const externalLinks = {
   telegram: "https://t.me/lenafil",
   max: "https://max.ru/u/f9LHodD0cOI4bt1GIdtlv3W2zVHNtqVsXupO3FAU_YZEJH-Q85ysLmS4E8s",
   email: "mailto:vizazhist.filimonovaelena@yandex.ru",
+  /**
+   * Единый URL квиза «Какой макияж — твой?».
+   * При переносе квиза на свой поддомен меняйте только здесь
+   * (или поле quizUrl в Sanity Studio).
+   */
+  quiz: "https://pixel-perfect-render-97320.lovable.app",
 };
 
 export const links = {
@@ -68,6 +74,20 @@ export const links = {
   contact: externalLinks.email,
   privacy: "/privacy",
   cookies: "/cookies",
+};
+
+/**
+ * Точки входа в квиз на лендинге.
+ * enabled: false — скрыть кнопки, даже если URL задан.
+ */
+export const quiz = {
+  enabled: true,
+  url: externalLinks.quiz,
+  heroCta: "Подобрать свой образ",
+  eyebrow: "Мини-тест · 1 минута",
+  title: "Какой макияж — твой?",
+  description: "Ответь на 6 вопросов и найди свой образ",
+  cta: "Узнать свой образ",
 };
 
 export const site = {
