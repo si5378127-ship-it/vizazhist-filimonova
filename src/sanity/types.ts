@@ -91,4 +91,11 @@ export type SanityLandingContent = {
   linkInstagram?: string | null;
   linkTelegram?: string | null;
   linkMax?: string | null;
+  quizEnabled?: boolean | null;
+  quizUrl?: string | null;
+  quizHeroCta?: string | null;
+  quizTitle?: string | null;
+  quizDescription?: string | null;
+  quizCta?: string | null;
+  quizEyebrow?: string | null;
 } | null;

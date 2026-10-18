@@ -10,6 +10,7 @@ import {
   makeupLesson,
   nav,
   portfolio,
+  quiz,
   reviews,
   services,
   site,
@@ -40,6 +41,7 @@ const fallbackContent: ResolvedSiteContent = {
   studio,
   socials,
   finalCta,
+  quiz,
 };
 
 /**

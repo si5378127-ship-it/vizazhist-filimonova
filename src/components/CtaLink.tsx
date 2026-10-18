@@ -11,6 +11,7 @@ export const outboundServices = {
   vk: "VK",
   telegram: "Telegram",
   max: "MAX",
+  quiz: "квиз",
 } as const;
 
 export type OutboundService = keyof typeof outboundServices;

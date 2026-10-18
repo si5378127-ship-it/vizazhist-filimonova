@@ -3,7 +3,7 @@ import { MediaFigure } from "@/components/MediaFigure";
 import { getResolvedSiteContent } from "@/sanity/lib/getResolvedSiteContent";
 
 export async function Hero() {
-  const { hero, links } = await getResolvedSiteContent();
+  const { hero, links, quiz } = await getResolvedSiteContent();
 
   return (
     <section
@@ -33,6 +33,18 @@ export async function Hero() {
             {hero.primaryCta}
           </CtaLink>
           <p className="text-sm text-muted">{hero.primaryNote}</p>
+          {quiz.enabled ? (
+            <CtaLink
+              href={quiz.url}
+              outbound="quiz"
+              variant="secondary"
+              className="mt-1"
+              goal="quiz_click"
+              placement="hero"
+            >
+              {quiz.heroCta}
+            </CtaLink>
+          ) : null}
           <a
             href={hero.secondaryHref}
             className="mt-1 text-[15px] text-muted transition-colors hover:text-ink"

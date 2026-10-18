@@ -8,6 +8,7 @@ export const metrikaGoals = {
   max: "max_click",
   vkMessage: "vk_message_click",
   telegram: "telegram_click",
+  quiz: "quiz_click",
 } as const;
 
 export type MetrikaGoalId = (typeof metrikaGoals)[keyof typeof metrikaGoals];
