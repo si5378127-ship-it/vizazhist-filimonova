@@ -37,7 +37,7 @@ export async function Hero() {
             <CtaLink
               href={quiz.url}
               outbound="quiz"
-              variant="secondary"
+              variant="soft"
               className="mt-1"
               goal="quiz_click"
               placement="hero"

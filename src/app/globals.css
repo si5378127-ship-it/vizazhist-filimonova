@@ -8,6 +8,9 @@
 @theme inline {
   --color-cream: #f7f2ec;
   --color-sand: #efe6dc;
+  /* Пыльная роза из палитры квиза / бренда */
+  --color-beige: #d8a6a9;
+  --color-beige-hover: #e8c5c7;
   --color-ink: #2b2825;
   --color-muted: #6f675f;
   --color-accent: #b07d6e;
