@@ -54,7 +54,7 @@ export async function QuizTeaser() {
             <CtaLink
               href={quiz.url}
               outbound="quiz"
-              variant="secondary"
+              variant="soft"
               className="mt-2.5 min-h-10 px-4 py-2 text-sm sm:mt-3.5 sm:min-h-11 sm:px-5 sm:py-2.5 sm:text-[15px]"
               goal="quiz_click"
               placement="after_portfolio"

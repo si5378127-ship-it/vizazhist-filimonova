@@ -64,7 +64,7 @@ export const externalLinks = {
    * При переносе квиза на свой поддомен меняйте только здесь
    * (или поле quizUrl в Sanity Studio).
    */
-  quiz: "https://pixel-perfect-render-97320.lovable.app",
+  quiz: "https://elena-makeup-quiz.vercel.app",
 };
 
 export const links = {
